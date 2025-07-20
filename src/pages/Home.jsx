@@ -22,7 +22,12 @@ export default function Home() {
                 <Typography variant="body1" gutterBottom>
                     Please login to access your dashboard.
                 </Typography>
-                <Button variant="contained" color="primary" component={Link} to="/login">
+                <Button
+                    variant="contained"
+                    color="primary"
+                    component={Link}
+                    to="/login"
+                >
                     Go to Login
                 </Button>
             </Box>
