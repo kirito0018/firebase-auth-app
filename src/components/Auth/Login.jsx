@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../services/firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
     Container,
     TextField,
@@ -31,11 +31,13 @@ export default function Login() {
                 <Typography variant="h4" gutterBottom>
                     Login
                 </Typography>
+
                 {error && (
                     <Typography color="error" variant="body2">
                         {error}
                     </Typography>
                 )}
+
                 <TextField
                     label="Email"
                     fullWidth
@@ -43,6 +45,7 @@ export default function Login() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
+
                 <TextField
                     label="Password"
                     type="password"
@@ -51,9 +54,28 @@ export default function Login() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <Button variant="contained" color="primary" fullWidth onClick={handleLogin}>
+
+                <Button
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    onClick={handleLogin}
+                    sx={{ mt: 2 }}
+                >
                     Login
                 </Button>
+                <Box mt={2} textAlign="center">
+                    <Button component={Link} to="/reset">
+                        Forgot Password?
+                    </Button>
+                </Box>
+                <Box mt={2} textAlign="center">
+                    <Typography variant="body2">
+                        Don't have an account?{' '}
+                        <Button component={Link} to="/register">Register</Button>
+                    </Typography>
+                </Box>
+
             </Box>
         </Container>
     );

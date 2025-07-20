@@ -13,6 +13,7 @@ export default function AppRoutes() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/reset" element={<ResetPassword />} />
+            <Route path="/register" element={<Register />} />
             <Route
                 path="/dashboard"
                 element={
