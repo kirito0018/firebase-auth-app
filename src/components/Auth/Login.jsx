@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import {
+    GoogleAuthProvider,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+} from 'firebase/auth';
 import { auth } from '../../services/firebase';
 import { useNavigate, Link } from 'react-router-dom';
 import {
@@ -24,6 +28,17 @@ export default function Login() {
             setError('Invalid email or password');
         }
     };
+
+    const handleGoogleLogin = async () => {
+        try {
+            const provider = new GoogleAuthProvider();
+            await signInWithPopup(auth, provider);
+            navigate('/dashboard');
+        } catch (err) {
+            setError('Google login failed');
+        }
+    };
+
 
     return (
         <Container maxWidth="sm">
@@ -63,6 +78,15 @@ export default function Login() {
                     sx={{ mt: 2 }}
                 >
                     Login
+                </Button>
+                <Button
+                    variant="outlined"
+                    color="secondary"
+                    fullWidth
+                    onClick={handleGoogleLogin}
+                    sx={{ mt: 2 }}
+                >
+                    Login with Google
                 </Button>
                 <Box mt={2} textAlign="center">
                     <Button component={Link} to="/reset">

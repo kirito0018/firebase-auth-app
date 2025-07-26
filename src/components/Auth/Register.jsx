@@ -10,8 +10,11 @@ import {
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../services/firebase';
 import { useNavigate, Link } from 'react-router-dom';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../../services/firebase';
 
 export default function Register() {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -22,13 +25,25 @@ export default function Register() {
         setError('');
         setSuccess('');
 
+        if (!name.trim()) {
+            setError('Name is required');
+            return;
+        }
+
         if (password.length < 6) {
             setError('Password must be at least 6 characters');
             return;
         }
 
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const uid = userCredential.user.uid;
+
+            // Salvar nome no Firestore, documento com ID = uid
+            await setDoc(doc(db, 'users', uid), {
+                name: name.trim(),
+            });
+
             setSuccess('Account created successfully!');
             navigate('/dashboard');
         } catch (err) {
@@ -44,6 +59,14 @@ export default function Register() {
                 </Typography>
                 {error && <Alert severity="error">{error}</Alert>}
                 {success && <Alert severity="success">{success}</Alert>}
+
+                <TextField
+                    label="Full Name"
+                    fullWidth
+                    margin="normal"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
 
                 <TextField
                     label="Email"

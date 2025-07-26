@@ -7,18 +7,23 @@ A simple React app bootstrapped with **Vite** that uses **Firebase Authenticatio
 - [Vite](https://vitejs.dev/)
 - [React](https://react.dev/)
 - [Firebase Authentication](https://firebase.google.com/docs/auth)
+- [Firebase Firestore](https://firebase.google.com/docs/firestore)
 - [Material-UI (MUI)](https://mui.com/)
 
 ## ✅ Features Implemented
 
 - Login with email and password
+- Login with Google (via Firebase Authentication)
 - Password reset via email
-- User registration with email and password
+- User registration with name, email and password
+- Stores user name in Firestore (secured by uid)
+- Fetches and displays personalized greeting from Firestore
 - Protected dashboard route (only accessible to authenticated users)
 - Logout functionality
 - Navigation logic based on auth state (Home redirects accordingly)
 - Auth context to track user session globally
 - Clean architecture: routes, context, services, components, and pages separated
+
 
 ## 📁 Project Structure
 
@@ -60,17 +65,41 @@ Before running the project, you must configure your environment variables.
 
 - Fill in your Firebase credentials in the newly created `.env` file.
 
-4. **Run the app**
+4. **Enable Firestore in Firebase Console**
+
+- Go to the **Firestore Database** tab in the Firebase Console
+- Click **Create database**
+- Choose **Production mode** or **Test mode** for dev use
+- Use secure rules:
+  ```js
+  rules_version = '2';
+  service cloud.firestore {
+    match /databases/{database}/documents {
+      match /{document=**} {
+        allow read, write: if request.auth != null;
+      }
+    }
+  }
+  ```
+
+5. **Run the app**
 
 ```bash
 npm run dev
 ```
 
+## 👤 Test User
+
+To test the application without registration, you can use the following credentials:
+
+- **Email:** teste@gmail.com  
+- **Password:** 123456
+
 ## 🧪 Upcoming Features
 
 - Login with Google
-- Firestore integration for storing user data
-- Custom user profile page
+- Firestore integration for user profile editing
+- Role-based access control
 
 ## 📄 License
 
