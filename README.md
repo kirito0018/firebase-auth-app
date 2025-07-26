@@ -19,6 +19,7 @@ A simple React app bootstrapped with **Vite** that uses **Firebase Authenticatio
 - Stores user name in Firestore (by uid)
 - Personalized dashboard greeting using Firestore data
 - Profile page to edit user name
+- Password change allowed only for email/password accounts (Google and test user accounts are restricted)
 - Displays user avatar on dashboard (Google photoURL or first name initial)
 - Protected dashboard and profile routes
 - Logout functionality
