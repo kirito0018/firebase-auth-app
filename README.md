@@ -2,6 +2,11 @@
 
 A simple React app bootstrapped with **Vite** that uses **Firebase Authentication** and **Material-UI (MUI)** for styling. It is structured in a scalable and modular way, ideal for portfolio or production-ready projects.
 
+## 🔗 Live Demo
+
+Test the application live at:  
+➡️ [https://fir-auth-app-aaa09.web.app](https://fir-auth-app-aaa09.web.app)
+
 ## 🔧 Stack
 
 - [Vite](https://vitejs.dev/)
