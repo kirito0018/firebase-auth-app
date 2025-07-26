@@ -15,15 +15,14 @@ A simple React app bootstrapped with **Vite** that uses **Firebase Authenticatio
 - Login with email and password
 - Login with Google (via Firebase Authentication)
 - Password reset via email
-- User registration with name, email and password
-- Stores user name in Firestore (secured by uid)
-- Fetches and displays personalized greeting from Firestore
-- Protected dashboard route (only accessible to authenticated users)
+- User registration with name and email
+- Stores user name in Firestore (by uid)
+- Personalized dashboard greeting using Firestore data
+- Profile page to edit user name
+- Protected dashboard and profile routes
 - Logout functionality
-- Navigation logic based on auth state (Home redirects accordingly)
-- Auth context to track user session globally
+- Navigation logic based on auth state
 - Clean architecture: routes, context, services, components, and pages separated
-
 
 ## 📁 Project Structure
 

@@ -5,6 +5,7 @@ import ResetPassword from '../components/Auth/ResetPassword';
 import Dashboard from '../pages/Dashboard';
 import PrivateRoute from './PrivateRoute';
 import Home from '../pages/Home';
+import Profile from '../pages/Profile';
 
 export default function AppRoutes() {
     return (
@@ -19,6 +20,14 @@ export default function AppRoutes() {
                 element={
                     <PrivateRoute>
                         <Dashboard />
+                    </PrivateRoute>
+                }
+            />
+            <Route
+                path="/profile"
+                element={
+                    <PrivateRoute>
+                        <Profile />
                     </PrivateRoute>
                 }
             />
