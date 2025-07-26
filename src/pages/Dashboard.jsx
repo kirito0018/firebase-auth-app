@@ -1,5 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
-import { Container, Typography, Box, Button } from '@mui/material';
+import {
+    Avatar,
+    Box,
+    Button,
+    Container,
+    Typography,
+} from '@mui/material';
 import LogoutButton from '../components/Auth/LogoutButton';
 import { AuthContext } from '../context/AuthContext';
 import { doc, getDoc } from 'firebase/firestore';
@@ -26,12 +32,24 @@ export default function Dashboard() {
         fetchUserData();
     }, [user]);
 
+    const avatarSrc = user?.photoURL ?? '';
+    const avatarFallback = name ? name.charAt(0).toUpperCase() : '?';
+
     return (
         <Container>
             <Box mt={5}>
+                <Avatar
+                    src={avatarSrc}
+                    alt={name}
+                    sx={{ width: 72, height: 72, mb: 2 }}
+                >
+                    {!avatarSrc && avatarFallback}
+                </Avatar>
+
                 <Typography variant="h4" gutterBottom>
                     Welcome{name ? `, ${name}` : ''}!
                 </Typography>
+
                 <Button
                     variant="outlined"
                     color="primary"
@@ -40,6 +58,7 @@ export default function Dashboard() {
                 >
                     Edit Profile
                 </Button>
+
                 <LogoutButton />
             </Box>
         </Container>
